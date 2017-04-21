@@ -6,4 +6,4 @@ This is written with using Three.js and HTML and will be updated to run with Ang
 
 Steps to use this:
 You can simply download and run the HTML file in the main folder to see the full functionaloty of the MRC file loader.
-Also, you can change your model by including the .mrc in the models/mrc/ folder and replacing the file name in the HTML file.
+Also, you can change your model by including the .mrc in the models/mrc/bin8Data/ folder and replacing the file name in the HTML file.
