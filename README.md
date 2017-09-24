@@ -1,6 +1,6 @@
 # MRC-File-Renderer
 
-This program takes a MRC file, parses it, converts the MRC data to a volume and renders the volume slices.  
+This program takes a MRC file, parses it, converts the MRC data to a volume and renders the volume slices. Please not that you can file in Firefox, Safari without any issue. But, you need to turn on a web server if you want to run it on Google Chrome.
 
 This is written with Three.js and HTML. It will be updated to run with AngularJS in the near future.
 
