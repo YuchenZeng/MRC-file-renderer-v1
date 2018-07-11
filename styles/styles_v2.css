@@ -39,3 +39,55 @@ body {
     bottom: 20px;
     z-index: 100;
 }
+
+#container {
+    width: 600px;
+    height: 600px;
+    background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
+    border: none;
+    top: 50px;
+    left : 50px;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    z-index: 100;
+}
+
+#containerX {
+    width: 250px;
+    height: 250px;
+    background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
+    border: none;
+    top: 20px;
+    right : 200px;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    z-index: 10;
+}
+
+#containerY {
+    width: 250px;
+    height: 250px;
+    background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
+    border: none;
+    top: 250px;
+    right : 200px;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    z-index: 100;
+}
+
+#containerZ {
+    width: 250px;
+    height: 250px;
+    background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
+    border: none;
+    top: 500px;
+    right : 200px;
+    margin: 0;
+    padding: 0px;
+    position: absolute;
+    z-index: 100;
+}
