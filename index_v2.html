@@ -5,6 +5,39 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/styles_v2.css">
+<style>
+.slidecontainer {
+width: 25%; /* Width of the outside container */
+}
+    /* The slider itself */
+.slider {
+     -webkit-appearance: none;  
+    appearance: none;
+    width: 75%; 
+    height: 10px; 
+    background: white; 
+    outline: none; 
+    opacity: 0.7; 
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /*Override default look*/
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+	border-radius: 100%;
+    background: rgb(121, 121, 121); 
+    cursor: pointer; /* Cursor on hover */
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+</style>
 </head>
 
 <body>
@@ -18,6 +51,20 @@
 <div id="containerY"></div>
 <div id="containerZ"></div>
 <div id="inset"></div>
+
+<div class="slidecontainer" style="position: absolute; top:30px; left: 150px; z-index: 1000;" >
+        <p style="color:white;"> index X  Value: <span id="demoX"></span></p>
+
+        <input type="range" class="slider" id="indexX" oninput='functionX()'>
+</div>
+<div class="slidecontainer"style="position: absolute; top:30px; z-index: 1000; left: 500px" >
+        <p style="color:white;"> index Y  Value: <span id="demoY"></span></p>
+        <input type="range"class="slider" id="indexY" oninput='functionY()'>
+</div>
+<div class="slidecontainer" style="position: absolute; top:30px; z-index: 1000; left: 850px">
+        <p style="color:white;">index Z  Value: <span id="demoZ"></span></p> 
+        <input type="range" class="slider" id="indexZ" oninput='functionZ()'>
+</div>	 
 
 <script src="build/three.js"></script>
 <!--<script src="js/controls/TrackballControls.js"></script>-->
@@ -43,11 +90,11 @@
     var cameraNumbers = [camera, camera3, camera4, camera5];
     windowWidth  = window.innerWidth;
     windowHeight = window.innerHeight;
-    var oneWidth = 600;
-    var oneHight = 600;
-    var twoHight = 250;
-    var twoWith = 250;
-    var dWith =250;
+    var oneWidth = 700;
+    var oneHight = 700;
+    var twoHight = 300;
+    var twoWith = 300;
+    var dWith =300;
     var view;
     var views = [
     {
@@ -73,7 +120,7 @@
         background: new THREE.Color().setRGB( 0, 0, 0 ),
         eye: [-300, 0, 0],
         up: [ 0, 1, 0 ],
-        fov: 70,
+        fov: 60,
 
         updateCamera : function ( camera, sceneX ) {
             camera.lookAt(sceneX.position);
@@ -102,7 +149,7 @@
         background: new THREE.Color().setRGB( 0, 0, 0 ),
         eye: [ 0, 0, 400 ],
         up: [ 1, 0, 0 ],
-        fov: 60,
+        fov: 35,
         
         updateCamera : function ( camera, sceneZ ) {
             camera.lookAt(sceneZ.position);
@@ -142,9 +189,9 @@
 
     
         view = views[1];
-        camera3 = new THREE.PerspectiveCamera(view.fov, twoWith / twoHight, 0.01, 10000);
+        camera3 = new THREE.PerspectiveCamera(view.fov, dWith / twoHight, 0.01, 10000);
 
-        camera3.position.x = view.eye[0];
+        camera3.position.x = view.eye[0]+128;
         camera3.position.y = view.eye[1];
         camera3.position.z = view.eye[2];
 
@@ -159,7 +206,7 @@
         camera4 = new THREE.PerspectiveCamera(view.fov, twoWith / twoHight, 0.01, 10000);
 
         camera4.position.x = view.eye[0];
-        camera4.position.y = view.eye[1];
+        camera4.position.y = view.eye[1]+20;
         camera4.position.z = view.eye[2];
 
         camera4.up.x = view.up[0];
@@ -174,7 +221,7 @@
 
         camera5.position.x = view.eye[0];
         camera5.position.y = view.eye[1];
-        camera5.position.z = view.eye[2];
+        camera5.position.z = view.eye[2]+68;
 
         camera5.up.x = view.up[0];
         camera5.up.y = view.up[1];
@@ -243,20 +290,25 @@
 		var box = new THREE.BoxHelper(cube);
 		var boxX = new THREE.BoxHelper(cubeX);
 		var boxY=new THREE.BoxHelper(cubeY);
-		var boxZ = new THREE.BoxHelper(cubeZ);
+        var boxZ = new THREE.BoxHelper(cubeZ);
+        scene.add(box);
+        box.applyMatrix(volume.matrix);
+        /*
 		sceneZ.add(boxZ);
 		sceneY.add(boxY);
 		sceneX.add(boxX);
-		scene.add(box);
-		box.applyMatrix(volume.matrix);
+		
+		
 		boxX.applyMatrix(volume.matrix);
 		boxY.applyMatrix(volume.matrix);
-		boxZ.applyMatrix(volume.matrix);
+        boxZ.applyMatrix(volume.matrix);
+        */
 		sceneZ.add(cubeZ);
 		sceneY.add(cubeY);
 		sceneX.add(cubeX);
 		scene.add(cube);
-
+        
+        console.log(volume.RASDimensions[2]);
           //x plane
 		var indexX = 0;
 		sliceX = volume.extractSlice('x', Math.floor(volume.RASDimensions[0] / 2));
@@ -278,9 +330,60 @@
 		scene.add(sliceZCopy.mesh);
         sceneZ.add(sliceZ.mesh);
         
-            
+        var sliderX=document.getElementById('indexX');
+		sliderX.max=volume.RASDimensions[0];
+		sliderX.value=volume.RASDimensions[0]/2;
+		var outputX=document.getElementById('demoX');
+		outputX.innerHTML=sliderX.value;
+		functionX = function(){
+			outputX.innerHTML=sliderX.value;
+			indexX=sliderX.value; 
+            scene.remove( sliceXCopy.mesh );
+            sceneX.remove( sliceX.mesh );
+			sliceX = volume.extractSlice('x',Math.floor(indexX));
+            sliceXCopy = volume.extractSlice('x',Math.floor(indexX));
+            scene.add( sliceXCopy.mesh );
+			sceneX.add( sliceX.mesh );  
+			views[1].camera3.position.x=parseInt(indexX)+parseInt(views[1].eye[0]);
+		};
+		var sliderY=document.getElementById('indexY');
+		sliderY.max=volume.RASDimensions[1]-1;
+		sliderY.value=volume.RASDimensions[1]/2-1;
+		var outputY=document.getElementById('demoY');
+		outputY.innerHTML=sliderY.value;
+		functionY= function(){
+			outputY.innerHTML=sliderY.value;
+			indexY=sliderY.value;
+            scene.remove( sliceYCopy.mesh );
+            sceneY.remove( sliceY.mesh );
+			sliceY = volume.extractSlice('y',Math.floor(indexY));
+            sliceYCopy = volume.extractSlice('y',Math.floor(indexY));
+            scene.add( sliceYCopy.mesh );
+			sceneY.add( sliceY.mesh );  
+			views[2].camera4.position.y=parseInt(views[2].eye[1])+parseInt(indexY);
+		};
+		var sliderZ=document.getElementById('indexZ');
+		sliderZ.max=volume.RASDimensions[2];
+		sliderZ.value=volume.RASDimensions[2]/2;
+		var outputZ=document.getElementById('demoZ');
+		outputZ.innerHTML=sliderZ.value;
+		sliderZ.value=volume.RASDimensions[2]/2;
+		functionZ= function(){
+			outputZ.innerHTML=sliderZ.value;
+			indexZ=sliderZ.value;
+            scene.remove( sliceZCopy.mesh );
+            sceneZ.remove( sliceZ.mesh );
+			sliceZ = volume.extractSlice('z',Math.floor(indexZ));
+            sliceZCopy = volume.extractSlice('z',Math.floor(indexZ));
+            scene.add( sliceZCopy.mesh );
+            sceneZ.add( sliceZ.mesh );  
+			views[3].camera5.position.z=parseInt(views[3].eye[2])+parseInt(indexZ);
+		};
+
+        /*    
         gui.add(sliceX, "index", 0, volume.RASDimensions[0], 1).name("indexX").onChange(function () {
-            sliceX.repaint.call(sliceX); 
+            sliceX.repaint.call(sliceX);
+            sliceXCopy.repaint.call(sliceXCopy);  
         });
         gui.add(sliceY, "index", 0, volume.RASDimensions[1], 1).name("indexY").onChange(function () {
             sliceY.repaint.call(sliceY);
@@ -288,7 +391,7 @@
         gui.add(sliceZ, "index", 0, volume.RASDimensions[2], 1).name("indexZ").onChange(function () {
             sliceZ.repaint.call(sliceZ);
         });
-
+        */
         gui.add(volume, "lowerThreshold", volume.min, volume.max, 1).name("Lower Threshold").onChange(function () {
             volume.repaintAllSlices();
         });
@@ -327,7 +430,7 @@
 	    containerZ.appendChild(stats.dom);
 
         var gui = new dat.GUI();
-        //window.addEventListener('resize', onWindowResize, false);
+        window.addEventListener('resize', onWindowResize, false);
         setupInset();
 
 
@@ -340,10 +443,10 @@
             windowWidth = window.innerWidth;
             windowHeight = window.innerHeight;
 
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            renderer3.setSize(window.innerWidth, window.innerHeight);
-            renderer4.setSize(window.innerWidth, window.innerHeight);
-            renderer5.setSize(window.innerWidth, window.innerHeight);
+            renderer.setSize(window.innerWidth/2, window.innerHeight/2);
+            renderer3.setSize(window.innerWidth/6, window.innerHeight/6);
+            renderer4.setSize(window.innerWidth/6, window.innerHeight/6);
+            renderer5.setSize(window.innerWidth/6, window.innerHeigh/6);
 
         }
 
@@ -461,7 +564,7 @@
         view.updateCamera (camera3, sceneX);
         camera3.aspect = dWith / twoHight;
         //camera3.updateProjectionMatrix();
-
+        //camera3.position.x=view.eye[0]+128;
         camera3.lookAt(sceneX.position);
         renderer3.render(sceneX, camera3);
 

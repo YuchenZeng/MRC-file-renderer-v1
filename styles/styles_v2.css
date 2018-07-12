@@ -42,11 +42,12 @@ body {
 
 #container {
     width: 600px;
-    height: 600px;
+    height: 675px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 50px;
+    bottom: 75px;
     left : 50px;
+    top: 75;
     margin: 0;
     padding: 0px;
     position: absolute;
@@ -54,8 +55,8 @@ body {
 }
 
 #containerX {
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
     top: 20px;
@@ -67,11 +68,11 @@ body {
 }
 
 #containerY {
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 250px;
+    top: 215px;
     right : 200px;
     margin: 0;
     padding: 0px;
@@ -80,11 +81,11 @@ body {
 }
 
 #containerZ {
-    width: 250px;
-    height: 250px;
+    width: 350px;
+    height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 500px;
+    top: 475px;
     right : 200px;
     margin: 0;
     padding: 0px;
