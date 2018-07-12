@@ -50,7 +50,7 @@ body {
     margin: 0;
     padding: 0px;
     position: absolute;
-    z-index: 100;
+    z-index: 800;
 }
 
 #containerX {

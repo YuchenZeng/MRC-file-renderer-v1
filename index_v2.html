@@ -73,7 +73,7 @@
         background: new THREE.Color().setRGB( 0, 0, 0 ),
         eye: [-300, 0, 0],
         up: [ 0, 1, 0 ],
-        fov: 60,
+        fov: 70,
 
         updateCamera : function ( camera, sceneX ) {
             camera.lookAt(sceneX.position);
@@ -126,7 +126,7 @@
         document.body.appendChild(container);
    
     
-        /*
+        
         view = views[0];
         camera = new THREE.PerspectiveCamera(view.fov, oneWidth / oneHight, 0.01, 10000);
 
@@ -182,7 +182,7 @@
 
         views[3].camera5 = camera5;
         
-            */
+        /*
         
         for(var i=0; i<views.length; i++){
             view = views[i];
@@ -199,7 +199,7 @@
         camera4 = new THREE.PerspectiveCamera(view.fov, twoWith / twoHight, 0.01, 10000);
         camera3 = new THREE.PerspectiveCamera(view.fov, dWith / twoHight, 0.01, 10000);
         
-
+        */
         scene = new THREE.Scene();
         //scene.add(views[0].camera);
 
@@ -280,7 +280,7 @@
         
             
         gui.add(sliceX, "index", 0, volume.RASDimensions[0], 1).name("indexX").onChange(function () {
-            sliceX.repaint.call(sliceX);
+            sliceX.repaint.call(sliceX); 
         });
         gui.add(sliceY, "index", 0, volume.RASDimensions[1], 1).name("indexY").onChange(function () {
             sliceY.repaint.call(sliceY);
@@ -457,13 +457,13 @@
         renderer3.setSize(dWith, twoHight);
         containerX.appendChild(renderer3.domElement);
         view = views[1];
-        camera= view.camera;
-        view.updateCamera (camera, sceneX);
-        camera.aspect = dWith / twoHight;
+        camera3= view.camera3;
+        view.updateCamera (camera3, sceneX);
+        camera3.aspect = dWith / twoHight;
         //camera3.updateProjectionMatrix();
 
-        camera.lookAt(sceneX.position);
-        renderer3.render(sceneX, camera);
+        camera3.lookAt(sceneX.position);
+        renderer3.render(sceneX, camera3);
 
     }
     function setupRenderer4(){
@@ -472,12 +472,12 @@
         renderer4.setSize(twoWith, twoHight);
         containerY.appendChild(renderer4.domElement);
         view = views[2];
-        camera= view.camera;
-        view.updateCamera (camera, sceneY);
-        camera.aspect = twoWith / twoHight;
+        camera4= view.camera4;
+        view.updateCamera (camera4, sceneY);
+        camera4.aspect = twoWith / twoHight;
         //camera4.updateProjectionMatrix();
-        camera.lookAt(sceneY.position);
-        renderer4.render(sceneY, camera);
+        camera4.lookAt(sceneY.position);
+        renderer4.render(sceneY, camera4);
 
     }
     function setupRenderer5(){
@@ -486,12 +486,12 @@
         renderer5.setSize(twoWith, twoHight);
         containerZ.appendChild(renderer5.domElement);
         view = views[3];
-        camera= view.camera;
-        view.updateCamera (camera, sceneZ);
-        camera.aspect = twoWith / twoHight;
+        camera5= view.camera5;
+        view.updateCamera (camera5, sceneZ);
+        camera5.aspect = twoWith / twoHight;
         //camera5.updateProjectionMatrix();
-        camera.lookAt(sceneZ.position);
-        renderer5.render(sceneZ, camera);
+        camera5.lookAt(sceneZ.position);
+        renderer5.render(sceneZ, camera5);
 
     }
 
