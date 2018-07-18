@@ -5,7 +5,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <link rel="stylesheet" type="text/css" href="styles/styles_v2.css">
+</head>
+
+<body>
 <style>
+
 .slidecontainer {
 width: 25%; /* Width of the outside container */
 }
@@ -15,7 +19,7 @@ width: 25%; /* Width of the outside container */
     appearance: none;
     width: 75%; 
     height: 10px; 
-    background: white; 
+    background: rgb(255,0,0); 
     outline: none; 
     opacity: 0.7; 
     -webkit-transition: .2s;
@@ -37,20 +41,79 @@ width: 25%; /* Width of the outside container */
     opacity: 1; /* Fully shown on mouse-over */
 }
 
-</style>
-</head>
+.slide1container {
+width: 25%; /* Width of the outside container */
+}
+    /* The slider itself */
+.slider1 {
+     -webkit-appearance: none;  
+    appearance: none;
+    width: 75%; 
+    height: 10px; 
+    background:green; 
+    outline: none; 
+    opacity: 0.7; 
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
 
-<body>
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider1::-webkit-slider-thumb {
+    -webkit-appearance: none; /*Override default look*/
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+	border-radius: 100%;
+    background: rgb(121, 121, 121); 
+    cursor: pointer; /* Cursor on hover */
+}
+
+/* Mouse-over effects */
+.slider1:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+.slide2container {
+width: 25%; /* Width of the outside container */
+}
+    /* The slider itself */
+.slider2 {
+     -webkit-appearance: none;  
+    appearance: none;
+    width: 75%; 
+    height: 10px; 
+    background: blue; 
+    outline: none; 
+    opacity: 0.7; 
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider2::-webkit-slider-thumb {
+    -webkit-appearance: none; /*Override default look*/
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+	border-radius: 100%;
+    background: rgb(121, 121, 121); 
+    cursor: pointer; /* Cursor on hover */
+}
+
+/* Mouse-over effects */
+.slider2:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+</style>
+
 <div id="info">
     <a href="http://threejs.org" target="_blank">three.js</a> -
     mrc format loader test
 </div>
-<div id="div"></div>
+<div id="inset"></div>
 <div id="container"></div>
 <div id="containerX"></div>
 <div id="containerY"></div>
 <div id="containerZ"></div>
-<div id="inset"></div>
 
 <div class="slidecontainer" style="position: absolute; top:30px; left: 150px; z-index: 1000;" >
         <p style="color:white;"> index X  Value: <span id="demoX"></span></p>
@@ -59,15 +122,15 @@ width: 25%; /* Width of the outside container */
 </div>
 <div class="slidecontainer"style="position: absolute; top:30px; z-index: 1000; left: 500px" >
         <p style="color:white;"> index Y  Value: <span id="demoY"></span></p>
-        <input type="range"class="slider" id="indexY" oninput='functionY()'>
+        <input type="range"class="slider1" id="indexY" oninput='functionY()'>
 </div>
-<div class="slidecontainer" style="position: absolute; top:30px; z-index: 1000; left: 850px">
+<div class="slidecontainer" style="position: absolute; top:30px; z-index: 1000;  left: 850px">
         <p style="color:white;">index Z  Value: <span id="demoZ"></span></p> 
-        <input type="range" class="slider" id="indexZ" oninput='functionZ()'>
+        <input type="range" class="slider2" id="indexZ" oninput='functionZ()'>
 </div>	 
 
 <script src="build/three.js"></script>
-<!--<script src="js/controls/TrackballControls.js"></script>-->
+<script src="js/controls/TrackballControls.js"></script>
 
 <script src="js/Volume.js"></script>
 <script src="js/VolumeSlice.js"></script>
@@ -90,8 +153,9 @@ width: 25%; /* Width of the outside container */
     var cameraNumbers = [camera, camera3, camera4, camera5];
     windowWidth  = window.innerWidth;
     windowHeight = window.innerHeight;
-    var oneWidth = 700;
-    var oneHight = 700;
+    container = document.getElementById("container");
+    var oneWidth = 675;
+    var oneHight =  675;
     var twoHight = 300;
     var twoWith = 300;
     var dWith =300;
@@ -161,16 +225,10 @@ width: 25%; /* Width of the outside container */
     init();
     animate();
 
+
     function init() {
         
-        container = document.createElement('container');
-        containerX= document.createElement('containerX');
-        containerY= document.createElement('containerY');
-        containerZ = document.createElement('containerZ');
-        document.body.appendChild(containerZ);
-        document.body.appendChild(containerY);
-        document.body.appendChild(containerX);
-        document.body.appendChild(container);
+        
    
     
         
@@ -248,7 +306,7 @@ width: 25%; /* Width of the outside container */
         
         */
         scene = new THREE.Scene();
-        //scene.add(views[0].camera);
+        scene.add(camera);
 
         sceneX=new THREE.Scene();
         //sceneX.add(views[1].camera);
@@ -263,7 +321,8 @@ width: 25%; /* Width of the outside container */
         
         var dirLight = new THREE.DirectionalLight(0xffffff);
         dirLight.position.set(200, 200, 1000).normalize();
-        scene.add(dirLight);
+        camera.add(dirLight);
+        camera.add( dirLight.target);
         sceneY.add(dirLight);
 	    sceneX.add(dirLight);
 	    sceneZ.add(dirLight);
@@ -411,9 +470,24 @@ width: 25%; /* Width of the outside container */
         renderer3 = new THREE.WebGLRenderer({alpha: true});
         renderer4 = new THREE.WebGLRenderer({alpha: true});
         renderer5 = new THREE.WebGLRenderer({alpha: true});
-        renderer = new THREE.WebGLRenderer({alpha: true});
-    
-        /*controls = new THREE.TrackballControls(camera, renderer.domElement);
+        renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
+
+        container = document.createElement('container');
+        containerX= document.createElement('containerX');
+        containerY= document.createElement('containerY');
+        containerZ = document.createElement('containerZ');
+        document.body.appendChild(containerZ);
+        document.body.appendChild(containerY);
+        document.body.appendChild(containerX);
+        document.body.appendChild(container);
+        container.appendChild( renderer.domElement );
+        containerX.appendChild( renderer3.domElement );
+        containerY.appendChild( renderer4.domElement );
+        containerZ.appendChild( renderer5.domElement );
+
+
+
+        controls = new THREE.TrackballControls(camera, renderer.domElement);
         controls.rotateSpeed = 5.0;
         controls.zoomSpeed = 5;
         controls.panSpeed = 2;
@@ -421,7 +495,7 @@ width: 25%; /* Width of the outside container */
         controls.noPan = false;
         controls.staticMoving = true;
         controls.dynamicDampingFactor = 0.3;
-        */
+        
 
         stats = new Stats();
         container.appendChild(stats.dom);
@@ -430,27 +504,21 @@ width: 25%; /* Width of the outside container */
 	    containerZ.appendChild(stats.dom);
 
         var gui = new dat.GUI();
-        window.addEventListener('resize', onWindowResize, false);
+        
         setupInset();
 
+        window.addEventListener('resize', onWindowResize, false);
 
     }
 
     function onWindowResize() {
 
-        if ( windowWidth != window.innerWidth || windowHeight != window.innerHeight ) {
-
-            windowWidth = window.innerWidth;
-            windowHeight = window.innerHeight;
-
-            renderer.setSize(window.innerWidth/2, window.innerHeight/2);
-            renderer3.setSize(window.innerWidth/6, window.innerHeight/6);
-            renderer4.setSize(window.innerWidth/6, window.innerHeight/6);
-            renderer5.setSize(window.innerWidth/6, window.innerHeigh/6);
-
-        }
-
-        //controls.handleResize();
+        windowWidth = window.innerWidth;
+        windowHeight = window.innerHeight;
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        controls.handleResize();
 
     }
 
@@ -483,30 +551,25 @@ width: 25%; /* Width of the outside container */
             
         }
         */
+        requestAnimationFrame(animate);
+        controls.update();
+       //copy position of the camera into inset
+
+        camera2.position.copy(camera.position);
+        camera2.position.sub(controls.target);
+        camera2.position.setLength(300);
+        camera2.lookAt(scene2.position);
+        renderer2.render(scene2, camera2);
 
         setupRenderer();
         setupRenderer3();
         setupRenderer4();
         setupRenderer5();
 
-        requestAnimationFrame(animate);
-
-   
-
-        //controls.update();
-
-        //copy position of the camera into inset
-
-        camera2.position.copy(camera.position);
-        //camera2.position.sub(controls.target);
-        camera2.position.setLength(300);
-        camera2.lookAt(scene2.position);
-        renderer2.render(scene2, camera2);
-
         stats.update();
 
     }
-
+    
     function rotateAroundWorldAxis(object, axis, radians) {
 
         var rotWorldMatrix = new THREE.Matrix4();
@@ -514,7 +577,7 @@ width: 25%; /* Width of the outside container */
         object.applyMatrix(rotWorldMatrix);
 
     }
-
+    
 
     function setupInset() {
         var insetWidth = 150, insetHeight = 150;
@@ -542,9 +605,9 @@ width: 25%; /* Width of the outside container */
 
     function setupRenderer(){
         container = document.getElementById('container');
+        container.appendChild( renderer.domElement );
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(oneWidth, oneHight);
-        container.appendChild(renderer.domElement);
         view = views[0];
         camera= view.camera;
         view.updateCamera (camera, scene);
@@ -556,9 +619,9 @@ width: 25%; /* Width of the outside container */
     }
     function setupRenderer3(){
         containerX = document.getElementById('containerX');
+        containerX.appendChild( renderer3.domElement );
         renderer3.setPixelRatio(window.devicePixelRatio);
         renderer3.setSize(dWith, twoHight);
-        containerX.appendChild(renderer3.domElement);
         view = views[1];
         camera3= view.camera3;
         view.updateCamera (camera3, sceneX);
@@ -572,8 +635,8 @@ width: 25%; /* Width of the outside container */
     function setupRenderer4(){
         containerY = document.getElementById('containerY');
         renderer4.setPixelRatio(window.devicePixelRatio);
+        containerY.appendChild( renderer4.domElement );
         renderer4.setSize(twoWith, twoHight);
-        containerY.appendChild(renderer4.domElement);
         view = views[2];
         camera4= view.camera4;
         view.updateCamera (camera4, sceneY);
@@ -586,8 +649,8 @@ width: 25%; /* Width of the outside container */
     function setupRenderer5(){
         containerZ = document.getElementById('containerZ');
         renderer5.setPixelRatio(window.devicePixelRatio);
+        containerZ.appendChild( renderer5.domElement );
         renderer5.setSize(twoWith, twoHight);
-        containerZ.appendChild(renderer5.domElement);
         view = views[3];
         camera5= view.camera5;
         view.updateCamera (camera5, sceneZ);

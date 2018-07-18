@@ -41,17 +41,17 @@ body {
 }
 
 #container {
-    width: 600px;
+    width: 675px;
     height: 675px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    bottom: 75px;
+    bottom: 25px;
     left : 50px;
     top: 75;
     margin: 0;
     padding: 0px;
     position: absolute;
-    z-index: 800;
+    z-index: 100;
 }
 
 #containerX {
@@ -64,7 +64,7 @@ body {
     margin: 0;
     padding: 0px;
     position: absolute;
-    z-index: 10;
+    
 }
 
 #containerY {
@@ -77,7 +77,7 @@ body {
     margin: 0;
     padding: 0px;
     position: absolute;
-    z-index: 100;
+    
 }
 
 #containerZ {
@@ -90,5 +90,4 @@ body {
     margin: 0;
     padding: 0px;
     position: absolute;
-    z-index: 100;
 }
