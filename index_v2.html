@@ -155,17 +155,17 @@ width: 25%; /* Width of the outside container */
     windowHeight = window.innerHeight;
     container = document.getElementById("container");
     var oneWidth = 675;
-    var oneHight =  675;
-    var twoHight = 300;
-    var twoWith = 300;
-    var dWith =300;
+    var oneHeight =  675;
+    var twoHeight = 300;
+    var twoWidth = 300;
+    var dWidth =300;
     var view;
     var views = [
     {
         left: 0,
         bottom: 0,
         width: 0.6,
-         height: 1.0,
+        height: 1.0,
         background: new THREE.Color().setRGB( 0, 0, 0 ),
         eye: [ -200, 200, 300 ],
         up: [ 0, 1, 0 ],
@@ -233,7 +233,7 @@ width: 25%; /* Width of the outside container */
     
         
         view = views[0];
-        camera = new THREE.PerspectiveCamera(view.fov, oneWidth / oneHight, 0.01, 10000);
+        camera = new THREE.PerspectiveCamera(view.fov, oneWidth / oneHeight, 0.01, 10000);
 
         camera.position.x = view.eye[0];
         camera.position.y = view.eye[1];
@@ -247,7 +247,7 @@ width: 25%; /* Width of the outside container */
 
     
         view = views[1];
-        camera3 = new THREE.PerspectiveCamera(view.fov, dWith / twoHight, 0.01, 10000);
+        camera3 = new THREE.PerspectiveCamera(view.fov, dWidth / twoHeight, 0.01, 10000);
 
         camera3.position.x = view.eye[0]+128;
         camera3.position.y = view.eye[1];
@@ -261,7 +261,7 @@ width: 25%; /* Width of the outside container */
     
     
         view = views[2];
-        camera4 = new THREE.PerspectiveCamera(view.fov, twoWith / twoHight, 0.01, 10000);
+        camera4 = new THREE.PerspectiveCamera(view.fov, twoWidth / twoHeight, 0.01, 10000);
 
         camera4.position.x = view.eye[0];
         camera4.position.y = view.eye[1]+20;
@@ -275,7 +275,7 @@ width: 25%; /* Width of the outside container */
     
     
         view = views[3];
-        camera5 = new THREE.PerspectiveCamera(view.fov, twoWith / twoHight, 0.01, 10000);
+        camera5 = new THREE.PerspectiveCamera(view.fov, twoWidth / twoHeight, 0.01, 10000);
 
         camera5.position.x = view.eye[0];
         camera5.position.y = view.eye[1];
@@ -607,11 +607,11 @@ width: 25%; /* Width of the outside container */
         container = document.getElementById('container');
         container.appendChild( renderer.domElement );
         renderer.setPixelRatio(window.devicePixelRatio);
-        renderer.setSize(oneWidth, oneHight);
+        renderer.setSize(oneWidth, oneHeight);
         view = views[0];
         camera= view.camera;
         view.updateCamera (camera, scene);
-        camera.aspect = oneWidth / oneHight;
+        camera.aspect = oneWidth / oneHeight;
         camera.updateProjectionMatrix();
         camera.lookAt(scene.position);
         renderer.render(scene, camera);
@@ -621,11 +621,11 @@ width: 25%; /* Width of the outside container */
         containerX = document.getElementById('containerX');
         containerX.appendChild( renderer3.domElement );
         renderer3.setPixelRatio(window.devicePixelRatio);
-        renderer3.setSize(dWith, twoHight);
+        renderer3.setSize(dWidth, twoHeight);
         view = views[1];
         camera3= view.camera3;
         view.updateCamera (camera3, sceneX);
-        camera3.aspect = dWith / twoHight;
+        camera3.aspect = dWidth / twoHeight;
         //camera3.updateProjectionMatrix();
         //camera3.position.x=view.eye[0]+128;
         camera3.lookAt(sceneX.position);
@@ -636,11 +636,11 @@ width: 25%; /* Width of the outside container */
         containerY = document.getElementById('containerY');
         renderer4.setPixelRatio(window.devicePixelRatio);
         containerY.appendChild( renderer4.domElement );
-        renderer4.setSize(twoWith, twoHight);
+        renderer4.setSize(twoWidth, twoHeight);
         view = views[2];
         camera4= view.camera4;
         view.updateCamera (camera4, sceneY);
-        camera4.aspect = twoWith / twoHight;
+        camera4.aspect = twoWidth / twoHeight;
         //camera4.updateProjectionMatrix();
         camera4.lookAt(sceneY.position);
         renderer4.render(sceneY, camera4);
@@ -650,11 +650,11 @@ width: 25%; /* Width of the outside container */
         containerZ = document.getElementById('containerZ');
         renderer5.setPixelRatio(window.devicePixelRatio);
         containerZ.appendChild( renderer5.domElement );
-        renderer5.setSize(twoWith, twoHight);
+        renderer5.setSize(twoWidth, twoHeight);
         view = views[3];
         camera5= view.camera5;
         view.updateCamera (camera5, sceneZ);
-        camera5.aspect = twoWith / twoHight;
+        camera5.aspect = twoWidth / twoHeight;
         //camera5.updateProjectionMatrix();
         camera5.lookAt(sceneZ.position);
         renderer5.render(sceneZ, camera5);
