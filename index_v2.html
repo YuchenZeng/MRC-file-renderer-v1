@@ -19,7 +19,7 @@ width: 25%; /* Width of the outside container */
     appearance: none;
     width: 75%; 
     height: 10px; 
-    background: rgb(255,0,0); 
+    background: red; 
     outline: none; 
     opacity: 0.7; 
     -webkit-transition: .2s;
@@ -227,10 +227,6 @@ width: 25%; /* Width of the outside container */
 
 
     function init() {
-        
-        
-   
-    
         
         view = views[0];
         camera = new THREE.PerspectiveCamera(view.fov, oneWidth / oneHeight, 0.01, 10000);
