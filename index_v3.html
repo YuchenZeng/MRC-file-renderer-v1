@@ -3,58 +3,33 @@
 <head>
     <title>three.js webgl - loaders - mrc loader</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="styles/styles_v4.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles/styles_v3.css">
 </head>
 
 <body>
-<div class="container">
-    <div class="row">
-        <div class"col">
-                <div class="slidecontainer" style="z-index: 1000;" >   
-                        <output style="color:white;"> index X  Value: <span id="demoX"></span></output>
-                        <input type="range" id="indexX"  class="Slider" oninput='functionX()'>
-                </div>
-        </div>
-        <div class"col">
-                <div class="slidecontainer"style="z-index: 1000;" >
-                        <output style="color:white;"> index Y  Value: <span id="demoY"></span></output>
-                        <input type="range" id="indexY" class="Slider1" oninput='functionY()'>
-                </div>
-        </div>
-        <div class"col">
-                <div class="slidecontainer" style="z-index: 1000;">
-                        <output style="color:white;">index Z  Value: <span id="demoZ"></span></output>
-                        <input type="range" id="indexZ" class="Slider2" oninput='functionZ()'>
-                    </div>
-        </div>
-    </div>
-        <div class="row">
-            <div class="col-xs-6 col-sm-6">
-                <div id="container1"></div>
-            </div>
-            <div class="col-xs-6 col-sm-6">
-                <div id="containerX">
-                </div>
-                <div id="containerY">
-                </div>
-                <div id="containerZ">
-                </div>
-            </div>
-            
-        </div>
+<div class="slidecontainer" style="position: absolute; top:50px; left: 150px; z-index: 1000; width: 20%;" >   
+        <output style="color:white;"> index X  Value: <span id="demoX"></span></output>
+        <input type="range" id="indexX"  class="Slider" oninput='functionX()'>
 </div>
-
-
-
+<div class="slidecontainer"style="position: absolute; top:50px; width: 20%; z-index: 1000; left: 500px" >
+        <output style="color:white;"> index Y  Value: <span id="demoY"></span></output>
+        <input type="range" id="indexY" class="Slider1" oninput='functionY()'>
+</div>
+<div class="slidecontainer" style="position: absolute; top:50px; width: 20%; z-index: 1000;  left: 850px">
+    <output style="color:white;">index Z  Value: <span id="demoZ"></span></output>
+    <input type="range" id="indexZ" class="Slider2" oninput='functionZ()'>
+</div>
 
 <div id="info">
     <a href="http://threejs.org" target="_blank">three.js</a> -
     mrc format loader test
 </div>
 <div id="inset"></div>
-
+<div id="container"></div>
+<div id="containerX"></div>
+<div id="containerY"></div>
+<div id="containerZ"></div>
 
  
 
@@ -73,7 +48,7 @@
 
     if (!Detector.webgl) Detector.addGetWebGLMessage();
     var renderer3, renderer4, renderer5, camera3, camera4, camera5;
-    var container1, stats, camera, controls, scene, renderer, gui, container2, renderer2, camera2, axes2, scene2;
+    var container, stats, camera, controls, scene, renderer, gui, container2, renderer2, camera2, axes2, scene2;
     var sliceZ, sliceY, sliceX;
     var windowWidth, windowHeight;
     var containerX, sceneX;
@@ -83,8 +58,8 @@
     windowWidth  = window.innerWidth;
     windowHeight = window.innerHeight;
     container = document.getElementById("container");
-    var oneWidth = 743;
-    var oneHeight =  743;
+    var oneWidth = 675;
+    var oneHeight =  675;
     var twoHeight = 300;
     var twoWidth = 300;
     var dWidth =300;
@@ -399,15 +374,15 @@
         renderer5 = new THREE.WebGLRenderer({alpha: true});
         renderer = new THREE.WebGLRenderer({ antialias: false, alpha: true });
 
-        container1 = document.createElement('container1');
+        container = document.createElement('container');
         containerX= document.createElement('containerX');
         containerY= document.createElement('containerY');
         containerZ = document.createElement('containerZ');
         document.body.appendChild(containerZ);
         document.body.appendChild(containerY);
         document.body.appendChild(containerX);
-        document.body.appendChild(container1);
-        container1.appendChild( renderer.domElement );
+        document.body.appendChild(container);
+        container.appendChild( renderer.domElement );
         containerX.appendChild( renderer3.domElement );
         containerY.appendChild( renderer4.domElement );
         containerZ.appendChild( renderer5.domElement );
@@ -425,7 +400,7 @@
         
 
         stats = new Stats();
-        container1.appendChild(stats.dom);
+        container.appendChild(stats.dom);
 	    containerX.appendChild(stats.dom);
 	    containerY.appendChild(stats.dom);
 	    containerZ.appendChild(stats.dom);
@@ -531,8 +506,8 @@
     }
 
     function setupRenderer(){
-        container1 = document.getElementById('container1');
-        container1.appendChild( renderer.domElement );
+        container = document.getElementById('container');
+        container.appendChild( renderer.domElement );
         renderer.setPixelRatio(window.devicePixelRatio);
         renderer.setSize(oneWidth, oneHeight);
         view = views[0];
@@ -590,8 +565,6 @@
 
 
 </script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
 </body>
 </html>
