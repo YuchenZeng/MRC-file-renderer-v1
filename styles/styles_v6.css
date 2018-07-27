@@ -54,8 +54,8 @@ body{background: #111 !important;}
   padding: 0px;
   z-index: 100;
   float: left;
-  height:83vh;
-  width: 45vw;
+  height:80vh;
+  width: 44vw;
 }
 
 #containerX {
@@ -63,7 +63,7 @@ body{background: #111 !important;}
     border: none;
     margin: 0;
     padding: 0px;
-    height: 22vh;
+    height: 21vh;
     width: 40vw;
 }
 
@@ -72,7 +72,7 @@ body{background: #111 !important;}
     border: none;
     margin: 0;
     padding: 0px;
-    height: 28.5vh;
+    height: 27vh;
     width: 40vw;
 }
 
@@ -81,7 +81,7 @@ body{background: #111 !important;}
     border: none;
     margin: 0;
     padding: 0px;
-    height: 33vh;
+    height: 32vh;
     width: 40vw;
 }
 
