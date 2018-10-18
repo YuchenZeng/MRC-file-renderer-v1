@@ -38,13 +38,12 @@
 <script src="js/VolumeSlice.js"></script>
 <script src="js/loaders/MRCLoader.js"></script>
 
-<script src="js/libs/stats.min.js"></script>
 <script src="js/libs/dat.gui.min.js"></script>
 
 <script>
 
     var renderer3, renderer4, renderer5, camera3, camera4, camera5;
-    var container, stats, camera, controls, scene, renderer, gui, container2, renderer2, camera2, axes2, scene2;
+    var container, camera, controls, scene, renderer, gui, container2, renderer2, camera2, axes2, scene2;
     var sliceZ, sliceY, sliceX;
     var windowWidth, windowHeight;
     var containerX, sceneX;
@@ -350,13 +349,6 @@
         controls.staticMoving = true;
         controls.dynamicDampingFactor = 0.3;
 
-
-        stats = new Stats();
-        container.appendChild(stats.dom);
-        containerX.appendChild(stats.dom);
-        containerY.appendChild(stats.dom);
-        containerZ.appendChild(stats.dom);
-
         var gui = new dat.GUI();
 
         setupInset();
@@ -395,9 +387,6 @@
         setupRenderer3();
         setupRenderer4();
         setupRenderer5();
-
-        stats.update();
-
     }
 
     function rotateAroundWorldAxis(object, axis, radians) {
