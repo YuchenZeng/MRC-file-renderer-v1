@@ -4,7 +4,17 @@ body {
     color: #000;
     margin: 0px;
     overflow: hidden;
+    background: #111 !important;
+    padding: 30px;
+    padding-top: 40px;
+
 }
+
+.row{
+  margin-left: 65px;
+  
+}
+
 
 #info {
     color: #fff;
@@ -38,6 +48,7 @@ body {
     left: 20px;
     bottom: 20px;
     z-index: 100;
+    float: left;
 }
 
 #container {
@@ -216,7 +227,4 @@ input[type=range]::-ms-thumb {
 }
 input[type=range]:hover {
   opacity: 1;
-}
-body {
-  padding: 30px;
 }
