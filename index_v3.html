@@ -31,8 +31,6 @@
 <div id="containerY"></div>
 <div id="containerZ"></div>
 
- 
-
 <script src="build/three.js"></script>
 <script src="js/controls/TrackballControls.js"></script>
 
@@ -430,29 +428,7 @@
 
         var rendererNumber = [renderer, renderer3, renderer4, renderer5];
         var sceneLetter = [scene, sceneX, sceneY, sceneZ];
-       /* 
-        for ( var i = 0; i < views.length; i++ ) {
-            view = views[i];
-            cameraNumbers[i] = view.camera;
 
-            view.updateCamera (cameraNumbers[i], sceneLetter[i]);
-
-            var left   = Math.floor( windowWidth  * view.left );
-            var bottom = Math.floor( windowHeight * view.bottom );
-            var width  = Math.floor( windowWidth  * view.width );
-            var height = Math.floor( windowHeight * view.height );
-            rendererNumber[i].setViewport( left, bottom, width, height );
-            rendererNumber[i].setScissor( left, bottom, width, height );
-            rendererNumber[i].setScissorTest( true );
-            rendererNumber[i].setClearColor( view.background );
-
-            cameraNumbers[i].aspect = window.innerWidth / window.innerHeight;
-            cameraNumbers[i].updateProjectionMatrix();
-            cameraNumbers[i].lookAt(sceneLetter[i].position);
-            rendererNumber[i].render(sceneLetter[i], cameraNumbers[i] );
-            
-        }
-        */
         requestAnimationFrame(animate);
         controls.update();
        //copy position of the camera into inset
