@@ -57,8 +57,8 @@ body {
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
     bottom: 25px;
-    left : 50px;
-    top: 75;
+    left : 370px;
+    top: 350px;
     margin: 0;
     padding: 0px;
     position: absolute;
@@ -70,8 +70,8 @@ body {
     height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 20px;
-    right : 200px;
+    top: 135px;
+    left : 150px;
     margin: 0;
     padding: 0px;
     position: absolute;
@@ -83,8 +83,8 @@ body {
     height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 215px;
-    right : 200px;
+    top: 135px;
+    left : 500px;
     margin: 0;
     padding: 0px;
     position: absolute;
@@ -96,8 +96,8 @@ body {
     height: 350px;
     background-color: transparent; /* or transparent; will show through only if renderer alpha: true */
     border: none;
-    top: 475px;
-    right : 200px;
+    top: 135px;
+    left : 850px;
     margin: 0;
     padding: 0px;
     position: absolute;
